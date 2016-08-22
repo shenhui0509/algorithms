@@ -7,6 +7,25 @@ using std::string;
 using std::vector;
 using std::pair;
 
+/*
+ * the famous KMP string match algorithm. 
+ * the essential of KMP is a FSM, the 'next' array represent the automation's state move
+ * For e.g. if we want to search for a pattern "abcabcaa"
+ * the FSM is like
+ * 
+ *     a      b      c      a      b      c      a      a
+ *  o ---> o ---> o ---> o ---> o ---> o ---> o ---> o ---> success 
+ *                       ^                    |
+ *                       ---------------------
+ * note that if we have already matches the second 'c', if the next character doesn't match, the "abc" before it has already
+ * matched, and the prefix "abc" is not neccessary to scan again
+ * so we just start match after the prefix "abc"
+ * the "next" array defines the state transition.
+ * the "next" for the example is 
+ * [-1, 0, 0, 0, 1, 2, 3, 1]
+ */
+ 
+ 
 auto
   complie(const string &pattern)
   ->vector<int>
